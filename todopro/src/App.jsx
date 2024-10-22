@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskList from './components/TaskList';
-// import AddTask from './component/AddTask';
+import AddTask from './components/AddTask';
 
 
 function App(){
@@ -8,7 +8,7 @@ function App(){
         <div className='App'>
             <h1>Todo App</h1>
             <a href="./components/AddTask">Add page</a>
-            {/* <AddTask /> */}
+            <AddTask />
             <TaskList />
         </div>
     );

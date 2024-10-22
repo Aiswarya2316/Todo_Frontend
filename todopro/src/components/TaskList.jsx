@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const TaskList =() => {
     const [tasks, setTasks] = useState([]);
-    const [editing, SetEditing] =useState(false);
+    const [editing, setEditing] =useState(false);
     const [currentTask, setCurrentTask] =useState({ id:null ,title: '', description: ''});
 
     useEffect(()=>{
@@ -19,9 +19,9 @@ const TaskList =() => {
 
     const updateTask=(id,updateTask)=>{
         setEditing(false);
-        axios.put(`http://localhost:8000/api/tasks/${id}/`,updateTask)
+        axios.put(`https://aswanth74.pythonanywhere.com/api/tasks/${id}/`,updateTask)
             .then(response=>{
-                setTasks(tasks.map{task=>(task.id==id? response.data:task)});
+                setTasks(tasks.map(task=>(task.id==id? response.data:task)));
             })
             .catch(error=>console.log(error));
     };
@@ -48,6 +48,7 @@ const TaskList =() => {
             ) : null}
         </div>
     );
+
 };
 
 const EditTaskFrom=({currentTask,updateTask})=>{
@@ -57,5 +58,34 @@ const EditTaskFrom=({currentTask,updateTask})=>{
         const {name,value}=e.target;
         setTask({...task,[name]:value})
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        updateTask(task.id,task);
+    };
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <h2>Edit Task</h2>
+            <div>
+                <label>Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    value={task.title}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div>
+            <label>Discription</label>
+            <textarea
+                name="description"
+                value={task.description}
+                onChange={handleInputChange}
+            />
+            </div>
+            <button type="submit">Update Task</button>
+        </form>
+    );
 }
 export default TaskList;
