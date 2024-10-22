@@ -9,12 +9,12 @@ const AddTask =() => {
         e.preventDefault();
         axios.post(`https://aswanth74.pythonanywhere.com/api/tasks/`, {title,description})
             .then(response=>{
-                console.log(response.data);
+                console.log(response.data)
                 setTitle('');
                 setDescription('');
             })
             .catch(error => console.log(error));
-    }       
+    };      
 
     return(
         <div className='container'>
@@ -25,16 +25,16 @@ const AddTask =() => {
                 <input
                 className='form=control'
                     type="text"
-                    value={task.title}
+                    value={title}
                     onChange={(e) => setTitle (e.target.value)}
                 />
             </div>
             <div className='mt-2'>
-            <label>Discription</label>
-            <textarea
-            className='form-control'
-                value={description}
-                onChange={(e) => setDescription (e.target.value)}
+                <label>Discription</label>
+                 <textarea
+                     className='form-control'
+                     value={description}
+                     onChange={(e) => setDescription (e.target.value)}
             />
             </div>
             <button type="submit">Update Task</button>
