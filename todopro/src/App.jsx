@@ -5,9 +5,9 @@ import AddTask from './components/AddTask';
 
 function App(){
     return(
-        <div className='App'>
+        <div className="App">
             <h1>Todo App</h1>
-            <a href="./components/AddTask">Add page</a>
+            <a href="./components/AddTask"></a>
             <AddTask />
             <TaskList />
         </div>
